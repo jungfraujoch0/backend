@@ -1,0 +1,114 @@
+<!-- // Name: Soh Swee min
+// Class: DAAA / FT / 1B / 01
+// Admission number: P2214308 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style2.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>New Actor</title>
+
+
+</head>
+
+<script>
+    $(document).ready(function () {
+
+
+        //update button click
+        $("#Register").click(function () {
+            var first_name = $("#firstname").val();
+            var last_name = $("#lastname").val();
+
+            // var jwt = localStorage.getItem("JWT");
+
+            var data = `{"first_name":"${first_name}","last_name": "${last_name}"}`;
+
+            console.log(data);
+
+            $.ajax({
+                url: "http://localhost:8081/actor",
+                method: "POST",
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                    console.log(result);
+                    if (result) {
+
+                        // var userData = localStorage.getItem('userData')
+                        var actorData = result
+                        localStorage.setItem('actorData', JSON.stringify(actorData))
+                        console.log(actorData)
+                        actorData.first_name = first_name
+                        actorData.last_name = last_name
+                        console.log("test")
+
+                        $('#msg').html(`<div class="alert alert-success" role="alert">Actor added successfully</div>`)
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    if (xhr.status == 400) {
+                        alert('Error - Missing data');
+                    } else {
+                        alert('Error occured')
+
+                    }
+
+
+                }
+                
+            }); //end of update click
+
+            return false
+
+        });
+        $("#Logout").click(function () {
+            localStorage.clear();
+            window.location.assign("login.html")
+
+            return false; //prevent refreshing
+        }); //end of logout click
+
+    });
+</script>
+
+
+<body>
+
+
+    <div class="container-fluid pt-4">
+        <h5><input type="button" id="Logout" value="Log Out" /></h5>
+        <a href="addcustomer.html" class="btn btn-secondary" role="button" id="button">Add customer</a>
+        <p class="sign-up-para">Add new actor</p>
+        <form name="registration" class="registartion-form" onsubmit="return formValidation()">
+            <table>
+                <th>
+                    <tr>
+                        <td><label for="name">First Name:</label></td>
+                        <td><input type="text" name="name" id="firstname" placeholder="First name"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Last Name:</label></td>
+                        <td><input type="text" name="name" id="lastname" placeholder="Last name"></td>
+                    </tr>
+                    <!-- <div>
+                        <span id="msg"></span>
+                    </div> -->
+                <td colspan="2"><input type="submit" class="submit" id="Register" /></td>
+
+                </th>
+
+            </table>
+
+        </form>
+        <p><span id="msg"></span></p>
+    </div>
+
+</body>

@@ -1,0 +1,95 @@
+<!-- // Name: Soh Swee min
+// Class: DAAA / FT / 1B / 01
+// Admission number: P2214308 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sample HTML Code - NewsLetter Form</title>
+        <link rel="stylesheet" type="text/css" href="css/style2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <main>
+        <!-- intro section -->
+        <section class="intro">
+            <h1 class="title">Welcome back.</h1>
+        </section>
+
+        <!-- sign-up section -->
+        <section class="sign-up">
+            <p class="sign-up-para">Enter login in details</p>
+            <!-- the form itself -->
+            <form class="sign-up-form">
+
+                <div class="form-input">
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                    <span>!</span>
+                    <p class="warning">Looks like this is not an email</p>
+                </div>
+
+                <div class="form-input">
+                    <input type="Password" name="Password" id="pwd" placeholder="Password" required>
+                    <span>!</span>
+                    <p class="warning">Password cannot be empty</p>
+                </div>
+
+
+                <input class="submit-btn" type="submit" id="Login">
+            </form>
+        </section>
+    </main>
+</body>
+
+<script>
+    $(document).ready(function () {
+
+        $("#Login").click(function () {
+            var email = $("#email").val();
+            var pwd = $("#pwd").val();
+            // alert(email + " " + pwd);
+
+            var data = `{"email": "${email}","password":"${pwd}"}`;
+
+            console.log(data);
+
+            $.ajax({
+
+                url: "http://localhost:8081/user/login",
+                method: "POST",
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                    console.log(result);
+                    console.log(xhr);
+                    if (result && result.success) {
+                        var userData = result.UserData;
+                        var token = result.token;
+                        localStorage.setItem("userData", userData);
+                        localStorage.setItem("JWT", token);
+                        window.location.assign('addcustomer.html')
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    alert("Login Failed! Please try again!");
+                }
+            });
+
+            return false;
+
+        });
+
+    });
+</script>
+
+
+</html>

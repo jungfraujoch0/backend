@@ -1,0 +1,243 @@
+<!-- Name: Soh Swee min
+Class: DAAA/FT/1B/01
+Admission number: P2214308 -->
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<title>Architecture Portfolio</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" type="text/css" href="css/cartstyle.css">
+	<script src="https://kit.fontawesome.com/2bf79a64f2.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- script
+		================================================== -->
+	<script src="js/modernizr.js"></script>
+
+
+</head>
+
+<header>
+	<div>
+		<h1>Calculate Rental</h1>
+	</div>
+</header>
+
+<body>
+
+	<div id="header-wrap">
+
+		<div class="top-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="right-element">
+							<a href="home.html" class="user-account for-buy"><i
+									class="icon icon-user"></i><span>Search</span></a>
+							<a href="cart.html" class="cart for-buy"><i class="fa fa-shopping-cart"
+									aria-hidden="true"></i><span>Cart</span></a>
+
+							<div class="action-menu">
+
+								<div class="search-bar">
+									<a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+										<i class="icon icon-search"></i>
+									</a>
+									<form id='retrieve' role="search" method="get" class="search-box">
+										<div class="column form-group md-4">
+
+											<label for="filmid">Film id</label>
+											<input type="number" class="form-control" min='0' id="filmid">
+
+										</div>
+										<div class="column form-group md-4">
+
+											<label for="duration">Duration</label>
+											<input type="number" class="form-control" min='0' id="duration">
+
+										</div>
+
+										<button type="submit" id="Searchprice"><span class="bi-hand-index"></span>
+											Get rates</button>
+									</form>
+								</div>
+							</div>
+
+						</div><!--top-right-->
+					</div>
+
+				</div>
+			</div>
+		</div><!--top-content-->
+
+
+	</div><!--header-wrap-->
+
+
+
+	<table id="menu">
+		<tr>
+			<th>Title</th>
+			<th>Duration of rental</th>
+			<th>Price</th>
+
+		</tr>
+
+		<tfoot>
+			<tr>
+				<td class="right" colspan="2">Total:</td>
+				<td class="right" id="total"></td>
+			</tr>
+		</tfoot>
+
+
+	</table>
+
+</body>
+
+<script>
+
+	
+	$(document).ready(function () {
+
+
+		var filmid = ''
+		var duration = ''
+		const urlParams = new URLSearchParams(window.location.search)
+		if (urlParams.has('filmid')) {
+			filmid = urlParams.get('filmid');
+		}
+		if (urlParams.has('duration')) {
+			duration = urlParams.get('duration');
+		}
+
+
+		//GET the dvds
+		$.ajax({
+			url: 'http://localhost:8081/rental?' + 'filmid=' + filmid + '&duration=' + duration,
+			method: "GET",
+			contentType: "application/json",
+			dataType: "json",
+			success: function (result, status, xhr) {
+				console.log(result);
+				var postDiv = $("#menu")
+				// postDiv.html('');
+				
+				for (var i = 0; i < result.length; i++) {
+					var rentalData = result[i];
+					var title = rentalData.title;
+					var price = rentalData.price
+					//dvd listing
+					var resultsDiv = `<tr>
+      <td>${title}</td>
+      <td>${duration}</td>
+      <td class="price">${price}</td>
+	 <td id="deletebtn"><button class='delete' type="submit"><span class="bi-hand-index"></span>
+					Delete</button></td>
+    </tr>`
+					postDiv.append(resultsDiv);
+
+				}
+
+
+			if (result.length == 0) {
+					postDiv.html("<p>No result</p>");
+
+			}
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		})
+	})
+
+	$("#retrieve").submit(function (event) {
+		console.log(event)
+		event.preventDefault();
+		var filmid = $("#filmid").val();
+		var duration = $("#duration").val();
+
+
+		$.ajax({
+			url: 'http://localhost:8081/rental?' + 'filmid=' + filmid + '&duration=' + duration,
+			method: "GET",
+			contentType: "application/json",
+			dataType: "json",
+			success: function (result, status, xhr) {
+
+				var postDiv = $("#menu")
+
+
+				for (var i = 0; i < result.length; i++) {
+					var rentalData = result[i];
+					var title = rentalData.title;
+					var price = rentalData.price
+
+					var resultsDiv = `<tr>
+			<td>${title}</td>
+			<td>${duration}</td>
+			<td class="price">${price}</td>
+			<td id="deletebtn"><button class='delete' type="submit"><span class="bi-hand-index"></span>
+					Delete</button>
+					</td>
+		</tr>`
+					postDiv.append(resultsDiv)
+
+					
+
+					function getTotal() {
+						var total = 0;
+						$('.price').each(function () {
+							total += parseFloat(this.innerHTML)
+						});
+						$('#total').text(total.toFixed(2));
+					}
+
+					getTotal();
+
+					
+
+				}
+
+				postDiv.on("click", ".delete", function () {
+					if (confirm('Are you sure to delete?')) {
+						$(this).closest("tr").remove();
+						getTotal()
+					} else {
+						return false
+					}
+				}
+				);
+
+				
+
+
+				if (result.length == 0) {
+					postDiv.html("<p>No result</p>");
+
+				}
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		}); //end of update click
+
+		return false;
+
+	});
+
+	
+
+</script>
+
+</html>

@@ -1,0 +1,201 @@
+<!-- // Name: Soh Swee min
+// Class: DAAA / FT / 1B / 01
+// Admission number: P2214308 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/style2.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>New Customer</title>
+
+
+</head>
+
+<script>
+
+    $(document).ready(function () {
+
+        function showStoreData() {
+            var count_id = this.value;
+            $("#storeid").html("");
+            $.ajax({
+                url: "http://localhost:8081/show-store",
+                type: "GET",
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                    $("#storeid").html('<option value=""></option>');
+                    $.each(res.store, function (key, value) {
+                        $("#storeid").append(
+                            '<option value="' + value.store_id + '">' + value.store_id + "</option>"
+                        );
+                    });
+                },
+            });
+        }
+        showStoreData();
+        //search for dvd information using the title release year and rating
+        //update button click
+        $("#Registercustomer").click(function () {
+            var store_id = $("#storeid").val();
+            var first_name = $("#firstname").val();
+            var last_name = $("#lastname").val();
+            var email = $("#email").val();
+            var address_line1 = $("#address1").val();
+            var address_line2 = $("#address2").val();
+            var district = $("#district").val();
+            var city_id = $("#cityid").val();
+            var postal_code = $("#postalcode").val();
+            var phone = $("#phonenumber").val();
+
+
+            var data = `{"store_id":"${store_id}","first_name":"${first_name}","last_name": "${last_name}","email":"${email}","address_line1": "${address_line1}","address_line2":"${address_line2}","district": "${district}","city_id":"${city_id}","postal_code": "${postal_code}","phone": "${phone}"}`;
+
+            console.log(data);
+
+            $.ajax({
+                // headers: { "authorization": `Bearer ${jwt}` },
+                url: "http://localhost:8081/customers",
+                method: "POST",
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                    console.log(result);
+                    if (result) {
+                        var userData = result
+                        localStorage.setItem('userData', JSON.stringify(userData))
+                        // userData = JSON.parse(userData)
+                        userData.store_id = store_id
+                        userData.first_name = first_name
+                        userData.last_name = last_name
+                        userData.email = email
+                        userData.address_line1 = address_line1
+                        userData.address_line2 = address_line2
+                        userData.district = district
+                        userData.city_id = city_id
+                        userData.postal_code = postal_code
+                        userData.phone = phone
+                        $('#msg1').html("Customer added successfully!")
+                        
+
+
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status == 400) {
+                        alert('Error - Missing data');
+                    } else if (xhr.status == 409) {
+                        alert('Error - Duplicate email!');
+                    } else {
+                        alert('Error occured')
+                    }
+                
+                }
+
+
+            })
+
+
+            return false;
+
+        });
+    });
+
+
+
+
+
+    $("#Logout").click(function () {
+        localStorage.clear();
+        window.location.assign("login.html")
+
+        return false; //prevent refreshing
+    }); //end of logout click
+
+
+</script>
+
+
+<body>
+
+
+    <div class="container-fluid pt-4">
+        <h5><input type="button" id="Logout" value="Log Out" /></h5>
+        <a href="addactor.html" class="btn btn-secondary" role="button" id="button">Add actor</a>
+        <p class="sign-up-para">Add new customer</p>
+        <form name="registration" class="registartion-form" onsubmit="return formValidation()">
+            <table>
+                <th>
+                    <tr>
+                        <td><label for="address">Address Line 1:</label></td>
+                        <td><input type="text" name="address" id="address1" placeholder="Address 1" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">Address Line 2:</label></td>
+                        <td><input type="text" name="address" id="address2" placeholder="Address 2"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="district">District:</label></td>
+                        <td><input type="text" name="district" id="district" placeholder="District" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cityid">City id:</label></td>
+                        <td><input type="number" class="form-control" id="cityid" title="Key in a valid number!"
+                                required></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="postalcode">Postal code:</code></label></td>
+                        <td><input type="number" class="form-control" id="postalcode" pattern="^[0-9]*$"
+                                title="Key in a valid number!"></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="phoneNumber">Phone Number:</code></label></td>
+                        <td><input type="number" name="phonenumber" id="phonenumber" required></td>
+                    </tr>
+
+                    <tr>
+
+                        <td><label for="storeid">Store id:</label></td>
+                        <td><select id="storeid" name="store" required>
+                                <option value=""></option>
+                            </select></td>
+
+                    </tr>
+                    <tr>
+                        <td><label for=" name">First Name:</label>
+                        </td>
+                        <td><input type="text" name="name" id="firstname" placeholder="Your name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Last Name:</label></td>
+                        <td><input type="name" name="name" id="lastname" placeholder="Your name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email:</label></td>
+                        <td><input type="email" name="email" id="email" placeholder="Your email" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><input type="submit" class="submit" id="Registercustomer" /></td>
+                    </tr>
+
+                </th>
+            </table>
+        </form>
+        <p><span id="msg1"></span></p>
+    </div>
+
+</body>
+
+
+
+</html>

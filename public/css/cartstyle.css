@@ -1,0 +1,54 @@
+/* < !-- Name: Soh Swee min Class: DAAA/FT/1B/01 Admission number: P2214308 --> */
+
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+}
+
+#body {
+    background-color: #e6e6e6;
+}
+
+#menu {
+    float: left;
+    text-align: left;
+    margin-left: 20px;
+    font-size: 15px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tfoot {
+    background-color: #dddddd;
+}
+
+.th {
+    font-size: 20px;
+}
+
+#filmid {
+    padding-left: 30px;
+}
+
+
+#retrieve {
+    padding-top: 20px;
+}
+
+#total {
+    background-color: rgb(173, 240, 255);
+}
+
+#deletebtn {
+    width: 10%;
+    background-color: rgb(206, 232, 255);
+}

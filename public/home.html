@@ -1,0 +1,597 @@
+<!-- // Name: Soh Swee min
+// Class: DAAA / FT / 1B / 01
+// Admission number: P2214308 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Book Store</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="css/vendor.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/2bf79a64f2.js" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
+		rel="stylesheet">
+	<script src="https://kit.fontawesome.com/2bf79a64f2.js" crossorigin="anonymous"></script>
+
+	<!-- Javascripts   Bootstrap -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<!-- script
+		================================================== -->
+	<!-- <script src="js/modernizr.js"></script> -->
+
+</head>
+
+<body>
+
+
+	<div id="header-wrap">
+		<img src="images/banner-img.png" alt="logo" id="bannerimg" width="400" height="500">
+		<div class="top-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="social-links">
+							<ul>
+								<li>
+									<a href="#"><i class="icon icon-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="icon icon-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="icon icon-youtube-play"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="icon icon-behance-square"></i></a>
+								</li>
+							</ul>
+						</div><!--social-links-->
+					</div>
+
+					<div class="col-md-6">
+
+						<div class="right-element">
+							<a href="#" class="user-account for-buy"><i class="fa fa-user-o"
+									aria-hidden="true"></i><span>Account</span></a>
+							<a href="cart.html" class="cart for-buy"><i class="fa fa-shopping-cart"
+									aria-hidden="true"></i><span>Cart:(0
+									$)</span></a>
+
+							<div class="action-menu">
+
+								<div class="search-bar">
+									<a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+										<i class="icon icon-search"></i>
+									</a>
+									<form role="search" method="get" class="search-box">
+										<input class="search-field text search-input" placeholder="Search"
+											type="search">
+									</form>
+								</div>
+							</div>
+
+						</div><!--top-right-->
+					</div>
+
+				</div>
+			</div>
+		</div><!--top-content-->
+
+		<header id="header">
+			<div class="container">
+
+
+				<div class="row">
+
+					<div class="col-md-2">
+						<div class="main-logo">
+							<a href="index.html"><img src="images/main-logo.png" alt="logo" width="200" height="200"></a>
+						</div>
+
+					</div>
+
+					<div class="col-md-10">
+
+						<nav id="navbar">
+							<div class="main-menu stellarnav">
+								<ul class="menu-list">
+									<li class="menu-item active"><a href="./index.html" data-effect="Home">Home</a></li>
+									<li class="menu-item"><a href="./about.html" class="nav-link"
+											data-effect="About">About</a></li>
+
+									<li class="menu-item"><a href="./home.html" class="nav-link"
+											data-effect="Shop">Search</a></li>
+
+								</ul>
+
+								<div class="hamburger">
+									<span class="bar"></span>
+									<span class="bar"></span>
+									<span class="bar"></span>
+								</div>
+
+							</div>
+						</nav>
+
+					</div>
+
+				</div>
+			</div>
+		</header>
+
+	</div><!--header-wrap-->
+
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="colored">
+						<h1 class="page-title">Search</h1>
+						<div class="breadcum-items">
+							<span class="item"><a href="index.html">Home /</a></span>
+							<span class="item colored">Search</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--site-banner-->
+
+
+	<div class="row">
+		<!--Image Banner-->
+		<h1 class="display-4 text-center" id="banner">Avaliable titles</h1>
+	</div>
+
+	<div class="container">
+		<div class="row">
+
+			<form id="create-post-form">
+				<div class="row">
+					<div class="column form-group md-4">
+						<label for="validationCustom01" class="form-label">Search for title...</label>
+						<input type="text" class="form-control" max-length="145" id="title">
+					</div>
+
+					<div class="column form-group md-4">
+
+						<label for="company">Maximum Price</label>
+						<input type="number" class="form-control" min='0' title="Key in a valid number!"
+							id="rentalrate">
+
+					</div>
+				</div>
+				<div class="col-6">
+
+					<label><strong>Category List</strong></label>
+					<select class="form-control" id="category-dd"></select>
+
+				</div>
+				<div class="col-4">
+
+					<label>Filter</label>
+					<select class="form-control" id="filter">
+						<option value=10>10</option>
+						<option value=20>20</option>
+						<option value=30>30</option>
+						<option value=40>40</option>
+						<option value=50>50</option>
+
+					</select>
+				</div>
+
+				<button type="submit" id="Search"><span class="bi-hand-index"></span>
+					Search</button>
+			</form>
+			<!-- </div> -->
+		</div>
+	</div>
+	<div id='dvdposts' class="row">
+		<div class="col-3 m-5 p-4">
+			<div>
+				<img src="images/poster.png" width="265" height="250">
+			</div>
+
+			<div class="col">
+				<p class="card-text">Title:</p>
+			</div>
+
+
+			<div class="col">
+				Release Year:
+			</div>
+
+			<div class="col">
+				Rating:
+			</div>
+
+			<div class="card-footer text-muted">
+				<a href="viewDetails.html?filmid=${filmid}" class="btn btn-primary" class="View">View</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-4">
+
+					<div class="footer-item">
+						<div class="company-brand">
+							<img src="images/main-logo.png" alt="logo" class="footer-logo">
+							<p>We are a small dvd rental store established in 2023, offering a range of dvds
+								from
+								blockbusters to comedy.</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-2">
+
+					<div class="footer-menu">
+						<h5>About Us</h5>
+						<ul class="menu-list">
+							<li class="menu-item">
+								<a href="#">vision</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">articles </a>
+							</li>
+							<li class="menu-item">
+								<a href="#">careers</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">service terms</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">donate</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="col-md-2">
+
+					<div class="footer-menu">
+						<h5>Discover</h5>
+						<ul class="menu-list">
+							<li class="menu-item">
+								<a href="#">Home</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Books</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Authors</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Subjects</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Advanced Search</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="col-md-2">
+
+					<div class="footer-menu">
+						<h5>My account</h5>
+						<ul class="menu-list">
+							<li class="menu-item">
+								<a href="#">Sign In</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">View Cart</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">My Wishtlist</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Track My Order</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="col-md-2">
+
+					<div class="footer-menu">
+						<h5>Help</h5>
+						<ul class="menu-list">
+							<li class="menu-item">
+								<a href="#">Help center</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Report a problem</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Suggesting edits</a>
+							</li>
+							<li class="menu-item">
+								<a href="#">Contact us</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- / row -->
+
+		</div>
+	</footer>
+
+	<div id="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="copyright">
+						<div class="row">
+
+							<div class="col-md-6">
+								<p>© 2022 All rights reserved. Free HTML Template by <a
+										href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a>
+								</p>
+							</div>
+
+							<div class="col-md-6">
+								<div class="social-links align-right">
+									<ul>
+										<li>
+											<a href="#"><i class="icon icon-facebook"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-twitter"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-youtube-play"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-behance-square"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div><!--grid-->
+
+				</div><!--footer-bottom-content-->
+			</div>
+		</div>
+	</div>
+
+
+
+	<script>
+
+		// Dynamic Dropdown in 'Node js' with MySQL ajax
+		$(document).ready(function () {
+
+			function showCategoryData() {
+				var count_id = this.value;
+				$("#category-dd").html("");
+				$.ajax({
+					url: "http://localhost:8081/show-list",
+					type: "GET",
+					dataType: "json",
+					success: function (res) {
+						console.log(res);
+						$("#category-dd").html('<option value=""></option>');
+						$.each(res.category, function (key, value) {
+							$("#category-dd").append(
+								'<option value="' + value.name + '">' + value.name + "</option>"
+							);
+						});
+					},
+				});
+			}
+			showCategoryData();
+			//search for dvd information using the title release year and rating
+
+		});
+		$(document).ready(function () {
+			const urlParams = new URLSearchParams(window.location.search)
+
+			var title = ''
+			var category = ''
+			
+			if (urlParams.has('title')) {
+				title = urlParams.get('title');
+			}
+			if (urlParams.has('rentalrate')) {
+				rentalrate = urlParams.get('rentalrate');
+			}
+			if (urlParams.has('category-dd')) {
+				category = urlParams.get('category-dd');
+			}
+			if (urlParams.has('filter')) {
+				category = urlParams.get('filter');
+			}
+
+
+			//GET the dvds
+			$.ajax({
+				url: 'http://localhost:8081/films?' + 'title=' + title + '&category=' + category + '&rentalrate=' + rentalrate + '&limit=' + limit,
+				method: "GET",
+				contentType: "application/json",
+				dataType: "json",
+				success: function (result, status, xhr) {
+					console.log(result);
+					var postDiv = $("#dvdposts")
+					postDiv.html('');
+
+
+					for (var i = 0; i < result.length; i++) {
+
+						var filmData = result[i];
+						var title = filmData.title;
+						var releaseyear = filmData.release_year;
+						var rating = filmData.rating;
+						var rentalrate = filmData.rental_rate;
+						var category = filmData.category;
+						var filmid = filmData.film_id
+						var limit = filmData.limit;
+
+						var resultsDiv = `<div class="col-3 m-5 p-4">
+<div>
+				<img src="images/poster.png" width="265" height="250">
+			</div>
+			<div class="col">
+				<p class="card-text">Title:${title}</p>
+			</div>
+
+
+			<div class="col">
+				Release Year:${releaseyear}
+			</div>
+
+			<div class="col">
+				Rating:${rating}
+			</div>
+
+			<div class="card-footer text-muted">
+				<a href="viewDetails.html?filmid=${filmid}" class="btn btn-primary" class="View">View</a>
+
+			</div>
+			</div>`
+
+						// Add the resultsDiv to a row every 3 iterations
+						if (i % 3 === 0) {
+							var row = $('<div class="row"></div>');
+							postDiv.append(row);
+						}
+
+						row.append(resultsDiv);
+					}
+
+
+					if (result.length == 0) {
+						postDiv.html("<p>No result</p>");
+					}
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+
+				}
+			});
+
+		});
+
+		$("#create-post-form").submit(function (event) {
+			console.log(event)
+			// event.preventDefault();
+			var title = $("#title").val();
+			var category = $("#category-dd").val();
+			var rentalrate = $("#rentalrate").val();
+			var limit = $('#filter').val()
+			//need to have box with id = title
+
+			$.ajax({
+				url: 'http://localhost:8081/films?' + 'title=' + title + '&category=' + category + '&rentalrate=' + rentalrate + '&limit=' + limit,
+				method: "GET",
+				contentType: "application/json",
+				dataType: "json",
+				success: function (result, status, xhr) {
+					// console.log(result)
+					var postDiv = $("#dvdposts")
+					postDiv.html("");
+
+					for (var i = 0; i < result.length; i++) {
+
+						var filmData = result[i];
+						var title = filmData.title;
+						var releaseyear = filmData.release_year;
+						var rating = filmData.rating;
+						var rentalrate = filmData.rental_rate;
+						var category = filmData.category;
+						var limit = filmData.limit
+						var filmid = filmData.film_id
+						var resultsDiv = `<div class="col-3 m-5 p-4">
+							<div>
+				<img src="images/poster.png" width="265" height="250">
+			</div>
+
+			<div class="col">
+				<p class="card-text">Title:${title}</p>
+			</div>
+
+
+			<div class="col">
+				Release Year:${releaseyear}
+			</div>
+
+			<div class="col">
+				Rating:${rating}
+			</div>
+
+			<div class="card-footer text-muted">
+				<a href="viewDetails.html?filmid=${filmid}" class="btn btn-primary" class="View">View</a>
+
+			</div>
+			</div>`
+
+						if (i % 3 === 0) {
+							var row = $('<div class="row"></div>');
+							postDiv.append(row);
+						}
+
+						row.append(resultsDiv);
+					}
+
+
+
+
+					if (result.length == 0) {
+						postDiv.html("<p>No result</p>");
+					}
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+				}
+			}); //end of update click
+
+			return false;
+
+		});
+
+
+	</script>
+
+</body>
+
+</html>
