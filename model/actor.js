@@ -1,6 +1,4 @@
-// Name: Soh Swee min
-// Class: DAAA / FT / 1B / 01
-// Admission number: P2214308
+
 
 
 var db = require('./databaseConfig.js');
