@@ -1,7 +1,5 @@
 ST0503 Back-end Web Development Assignment 2
-Name: Soh Swee min
-Class: DAAA/FT/1B/01
-Admission number: P2214308
+
 
 Installation
 ----------------------
